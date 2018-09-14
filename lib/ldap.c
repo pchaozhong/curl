@@ -5,7 +5,7 @@
  *                | (__| |_| |  _ <| |___
  *                 \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2017, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2018, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -840,7 +840,7 @@ static int _ldap_url_parse2(const struct connectdata *conn, LDAPURLDesc *ludp)
   if(!conn->data ||
      !conn->data->state.path ||
      conn->data->state.path[0] != '/' ||
-     !checkprefix("LDAP", conn->data->change.url))
+     !strcasecompare("LDAP", conn->data->state.up.scheme))
     return LDAP_INVALID_SYNTAX;
 
   ludp->lud_scope = LDAP_SCOPE_BASE;
